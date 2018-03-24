@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CryptoPriceWatcher</string>
+
+    <string name="usd">usd</string>
+    <string name="percentage">%1$s%%</string>
+    <string name="usd_symbol">\$</string>
+
+    <string name="index">#$d</string>
+</resources>
