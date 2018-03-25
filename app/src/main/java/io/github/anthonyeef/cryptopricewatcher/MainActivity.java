@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             mAdapter.notifyDataSetChanged();
                         },
                         throwable -> {
-
+                            // todo
                         });
     }
 
@@ -85,15 +85,15 @@ public class MainActivity extends AppCompatActivity {
                 .filter(index -> index != 0)
                 .flatMap(index -> service.getTickerData())
                 .observeOn(AndroidSchedulers.mainThread())
+                .as(autoDisposable(AndroidLifecycleScopeProvider.from(this)))
                 .subscribe(
                         coinEntities -> {
-                            Log.d(this.toString(), Thread.currentThread().getName());
                             items.clear();
                             items.addAll(coinEntities);
                             mAdapter.notifyDataSetChanged();
                         },
                         throwable -> {
-
+                            // todo
                         });
     }
 }

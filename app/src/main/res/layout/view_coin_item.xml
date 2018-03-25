@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_padding_tiny"
+            android:layout_marginStart="@dimen/horizontal_padding_small"
             android:textSize="@dimen/text_size_medium"
             android:textStyle="bold"
             android:textColor="@android:color/black"
