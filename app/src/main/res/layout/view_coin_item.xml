@@ -12,17 +12,24 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/vertical_padding_normal"
         android:paddingBottom="@dimen/vertical_padding_normal"
         >
+
+        <Space
+            android:id="@+id/top_padding"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/vertical_padding_normal"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <TextView
             android:id="@+id/index"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_padding_normal"
+            android:layout_marginTop="@dimen/vertical_padding_tiny"
+            android:layout_marginStart="@dimen/horizontal_padding_tiny"
             android:textSize="@dimen/text_size_normal"
-            android:textColor="@color/text_color_secondary"
+            android:textColor="@color/text_color_normal"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -30,25 +37,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_padding_tiny"
+            android:layout_marginStart="@dimen/horizontal_padding_small"
             android:textSize="@dimen/text_size_medium"
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:text="@{coin.symbol}"
             app:layout_constraintStart_toEndOf="@id/index"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/currency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/horizontal_padding_normal"
-            android:text="@string/usd_symbol"
-            android:textSize="@dimen/text_size_small"
-            app:layout_constraintBottom_toBottomOf="@+id/price"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/top_padding"
             />
 
         <TextView
@@ -58,8 +53,19 @@
             android:textSize="@dimen/text_size_normal"
             android:textColor="@android:color/black"
             android:text="@{coin.priceUsd}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/currency"
+            app:layout_constraintTop_toBottomOf="@id/top_padding"
+            app:layout_constraintEnd_toStartOf="@+id/currency"
+            />
+
+        <TextView
+            android:id="@+id/currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/horizontal_padding_normal"
+            android:text="@string/usd_symbol"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintBottom_toBottomOf="@id/price"
+            app:layout_constraintEnd_toEndOf="parent"
             />
 
         <TextView
@@ -69,9 +75,20 @@
             android:layout_marginEnd="@dimen/horizontal_padding_normal"
             android:textSize="@dimen/text_size_small"
             android:text="@{@string/percentage(coin.percentChange24h)}"
-            android:textColor="@android:color/black"
+            android:textColor="@{safeUnbox(Float.valueOf(coin.percentChange24h)) &gt; 0 ? @color/green400 : @color/red400}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/currency"
+            app:layout_constraintTop_toBottomOf="@id/price"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/twenty_four_hour_change"
+            android:textColor="@color/text_color_normal"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintEnd_toStartOf="@id/percentage"
+            app:layout_constraintBottom_toBottomOf="@id/percentage"
             />
 
     </android.support.constraint.ConstraintLayout>

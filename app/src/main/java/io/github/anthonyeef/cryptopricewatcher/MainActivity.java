@@ -6,8 +6,10 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         setupView();
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             mAdapter.notifyDataSetChanged();
                         },
                         throwable -> {
-
+                            // todo
                         });
     }
 
@@ -82,15 +85,15 @@ public class MainActivity extends AppCompatActivity {
                 .filter(index -> index != 0)
                 .flatMap(index -> service.getTickerData())
                 .observeOn(AndroidSchedulers.mainThread())
+                .as(autoDisposable(AndroidLifecycleScopeProvider.from(this)))
                 .subscribe(
                         coinEntities -> {
-                            Log.d(this.toString(), Thread.currentThread().getName());
                             items.clear();
                             items.addAll(coinEntities);
                             mAdapter.notifyDataSetChanged();
                         },
                         throwable -> {
-
+                            // todo
                         });
     }
 }
