@@ -6,8 +6,10 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         setupView();
