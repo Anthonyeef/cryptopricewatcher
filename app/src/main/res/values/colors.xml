@@ -11,6 +11,10 @@
     <color name="grey800">#424242</color>
     <color name="grey900">#212121</color>
 
+    <color name="red400">#EF5350</color>
+
+    <color name="green400">#66BB6A</color>
+
     <color name="blueGrey">#cfd8dc</color>
 
     <color name="divider_background_color">@color/grey200</color>

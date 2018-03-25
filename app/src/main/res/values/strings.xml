@@ -5,5 +5,7 @@
     <string name="percentage">%1$s%%</string>
     <string name="usd_symbol">\$</string>
 
+    <string name="twenty_four_hour_change">"24h: "</string>
+
     <string name="index">#$d</string>
 </resources>
